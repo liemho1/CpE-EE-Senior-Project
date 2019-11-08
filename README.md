@@ -15,3 +15,8 @@ Course Objectives:
 •	Form a project team, find a project, customer, and project advisor, write a proposal for the project, and present your proposal orally.  
 •	Become familiar with important concepts related to developing a product and conducting yourself in a competitive business environment.   
 •	Topics include: proposal development, design process, ethics, project management, economics of product design, creativity, effective presentations, product testing and evaluation, prototyping, and intellectual property. 
+
+
+
+Command to SSH into Raspberry Pi:
+ssh pi@raspberrypi.local
