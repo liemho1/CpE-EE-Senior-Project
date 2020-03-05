@@ -1,0 +1,50 @@
+
+#include <AFMotor.h>
+
+AF_DCMotor motorLeft(2);
+AF_DCMotor motorRight(3);
+
+//AF_DCMotor motor(3);
+
+
+
+void setup() {
+
+  Serial.begin(9600);           // set up Serial library at 9600 bps
+
+  Serial.println("Motor test!");
+
+  // turn on motor
+
+  motorLeft.setSpeed(200);
+  motorRight.setSpeed(200);
+
+  motorLeft.run(RELEASE);
+  motorRight.run(RELEASE);
+
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  uint8_t i;
+
+  
+
+  Serial.print("tick");
+  
+  motorLeft.run(FORWARD);
+  motorRight.run(FORWARD);
+  for (i=0; i<255; i++) {
+
+    motorLeft.setSpeed(i);  
+    motorRight.setSpeed(i); 
+
+    delay(10);
+ }
+  Serial.print("tech");
+
+  motorLeft.run(RELEASE);
+  motorRight.run(RELEASE);
+  
+  delay(1000);
+
+}
