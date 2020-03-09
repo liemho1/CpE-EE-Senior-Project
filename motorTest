@@ -48,3 +48,25 @@ void loop() {
   delay(1000);
 
 }
+
+void forward()
+{
+  motorLeft.run(FORWARD);
+  motorRight.run(FORWARD);
+}
+
+void turnLeft(int angle)
+{
+  motorLeft.run(RELEASE);
+  motorRight.run(FORWARD);
+  delay(angle);
+  motorRight.run(RELEASE)
+}
+
+void turnRight(int angle)
+{
+  motorLeft.run(FORWARD);
+  motorRight.run(RELEASE);
+  delay(angle);
+  motorLeft.run(RELEASE);
+}
