@@ -16,8 +16,8 @@ void setup() {
 
   // turn on motor
 
-  motorLeft.setSpeed(200);
-  motorRight.setSpeed(200);
+  motorLeft.setSpeed(250);
+  motorRight.setSpeed(250);
 
   motorLeft.run(RELEASE);
   motorRight.run(RELEASE);
@@ -26,9 +26,14 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   uint8_t i;
-
   
-
+  move(0);
+  delay(1000);
+  stop();
+  
+  
+  
+  /*
   Serial.print("tick");
   
   motorLeft.run(FORWARD);
@@ -39,34 +44,46 @@ void loop() {
     motorRight.setSpeed(i); 
 
     delay(10);
- }
+  }
   Serial.print("tech");
 
   motorLeft.run(RELEASE);
   motorRight.run(RELEASE);
   
   delay(1000);
-
+  */
 }
 
-void forward()
-{
-  motorLeft.run(FORWARD);
-  motorRight.run(FORWARD);
-}
-
-void turnLeft(int angle)
+void stop()
 {
   motorLeft.run(RELEASE);
-  motorRight.run(FORWARD);
-  delay(angle);
-  motorRight.run(RELEASE)
-}
-
-void turnRight(int angle)
-{
-  motorLeft.run(FORWARD);
   motorRight.run(RELEASE);
-  delay(angle);
-  motorLeft.run(RELEASE);
 }
+
+
+//When angle = 1, forward motion. For negative values, left turn (angle determines time of turn). For positive values, right turn. 
+//If function used for forward motion it must be followed by stop() function to turn off wheel motors
+void move(int angle)
+{
+  if(angle==0)
+  {
+    motorLeft.run(FORWARD);
+    motorRight.run(FORWARD);
+  }
+  if(angle>0)
+  {
+    motorLeft.run(FORWARD);
+    motorRight.run(RELEASE);
+    delay(angle);
+    motorLeft.run(RELEASE);
+  }
+  if(angle<0)
+  {
+    motorLeft.run(RELEASE);
+    motorRight.run(FORWARD);
+    delay(angle);
+    motorRight.run(RELEASE)
+  }
+}
+
+
