@@ -1,8 +1,8 @@
-
 #include <AFMotor.h>
 
 AF_DCMotor motorLeft(2);
 AF_DCMotor motorRight(3);
+const int relayPin=8;
 
 //AF_DCMotor motor(3);
 
@@ -21,6 +21,8 @@ void setup() {
 
   motorLeft.run(RELEASE);
   motorRight.run(RELEASE);
+  
+  pinMode(relayPin, OUTPUT);
 
 }
 void loop() {
@@ -28,7 +30,9 @@ void loop() {
   uint8_t i;
   
   move(0);
+  relayOn();
   delay(1000);
+  relayOff();
   stop();
   
   
@@ -52,6 +56,16 @@ void loop() {
   
   delay(1000);
   */
+}
+
+void relayOn()
+{
+  digitalWrite(relayPin, LOW);
+}
+
+void relayOff()
+{
+  digitalWrite(relayPin, HIGH);
 }
 
 void stop()
