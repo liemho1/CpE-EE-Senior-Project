@@ -1,0 +1,18 @@
+import serial  # Importing the serial library to communicate with Arduino
+import RPi.GPIO as GPIO # Importing the GPIO library to use the GPIO pins of Raspberry pi
+from time import sleep # Importing the time library to provide the delays in program
+
+GPIO.setmode(GPIO.BCM) # Using BCM numbering
+
+# Defined the port and the baudrate at which we will communicate with Arduino.
+# It should be same on the Arduino side.
+# If you don't know the port at which Arduino is connected. Read the step 2 of the first example.
+serMotor = serial.Serial('/dev/ttyACM1', 9600) 
+serRelay = serial.Serial('/dev/ttyACM2', 9600)
+while True:
+    try:
+            serMotor.write('0') # Sending forward command data to the motor Arduino
+            serRelay.write('1') # Sending on command data to the relay Arduino
+        
+    except KeyboardInterrupt:
+        GPIO.cleanup()
