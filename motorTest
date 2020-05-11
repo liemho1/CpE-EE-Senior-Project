@@ -2,16 +2,13 @@
 
 AF_DCMotor motorLeft(2);
 AF_DCMotor motorRight(3);
-
-//AF_DCMotor motor(3);
+int incomingData = 0;
 
 
 
 void setup() {
 
   Serial.begin(9600);           // set up Serial library at 9600 bps
-
-  Serial.println("Motor test!");
 
   // turn on motor
 
@@ -26,12 +23,13 @@ void loop() {
   // put your main code here, to run repeatedly:
   uint8_t i;
   
-  move(0);
-  delay(1000);
-  stop();
-  
-  
-  
+  if (Serial.available() > 0){  //Looking for incoming data
+    incomingData = Serial.read() - '0';  //Reading the data
+    move(incomingData);
+    delay(1000);
+    stop();
+    }
+
   /*
   Serial.print("tick");
   
