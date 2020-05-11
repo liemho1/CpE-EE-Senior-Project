@@ -2,15 +2,23 @@
 
 
 const int relayPin=8;
+int incomingData = 0;
 
 void setup() {
   pinMode(relayPin, OUTPUT);
 }
 
 void loop() {
-  relayOn();
-  delay(1000);
-  relayOff();
+
+  if (Serial.available() > 0){  //Looking for incoming data
+    incomingData = Serial.read() - '0';  //Reading the data
+    if (incomingData == 0){
+      relayOff();
+    }
+    else if(incomingData == 1){
+      relayOn();
+    }
+  }
 }
 
 void relayOn()
