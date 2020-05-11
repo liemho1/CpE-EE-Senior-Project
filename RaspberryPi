@@ -9,10 +9,15 @@ GPIO.setmode(GPIO.BCM) # Using BCM numbering
 # If you don't know the port at which Arduino is connected. Read the step 2 of the first example.
 serMotor = serial.Serial('/dev/ttyACM1', 9600) 
 serRelay = serial.Serial('/dev/ttyACM2', 9600)
-while True:
+bool Cont = true
+
+while Cont:
     try:
             serMotor.write('0') # Sending forward command data to the motor Arduino
             serRelay.write('1') # Sending on command data to the relay Arduino
+            delay(1000)
+            Cont = false # only sends signal once currently 
+           
         
     except KeyboardInterrupt:
         GPIO.cleanup()
