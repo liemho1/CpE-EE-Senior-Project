@@ -5,8 +5,6 @@ from time import sleep # Importing the time library to provide the delays in pro
 GPIO.setmode(GPIO.BCM) # Using BCM numbering
 
 # Defined the port and the baudrate at which we will communicate with Arduino.
-# It should be same on the Arduino side.
-# If you don't know the port at which Arduino is connected. Read the step 2 of the first example.
 serMotor = serial.Serial('/dev/ttyACM1', 9600) 
 serRelay = serial.Serial('/dev/ttyACM2', 9600)
 bool Cont = true
